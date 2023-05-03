@@ -13,23 +13,10 @@ def get_unique_industries(path: str) -> List[str]:
     except KeyError:
         print(f"Chave inexistente em {job}: {job['industry']}")
     else:
-        print(unique_industries)
         return unique_industries
 
 
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
-    """Filters a list of jobs by industry
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    industry : str
-        Industry for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided industry
-    """
-    raise NotImplementedError
+    """Filters a list of jobs by industry"""
+    filtered_ind = [job for job in jobs if job['industry'] == industry]
+    return filtered_ind

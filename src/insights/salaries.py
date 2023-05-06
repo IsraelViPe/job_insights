@@ -37,17 +37,15 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         max_s = int(job["max_salary"])
         int_s = int(salary)
 
-        if 'min_salary'not in job or 'max_salary' not in job:
-            raise ValueError("'min_salary' or 'max_salary' doesn't exists")
-
-        if type(min_s) != int or type(max_s) != int:
-            raise ValueError("'min_salary' or 'max_salary' aren't valid int")
-
-        if min_s > max_s:
-            raise ValueError("'min_salary' is greather than 'max_salary'")
-
-        if type(int_s) != int:
-            raise ValueError("salary isn't a valid integer")
+        if (
+            'min_salary' not in job
+            or 'max_salary' not in job
+            or type(min_s) != int
+            or type(max_s) != int
+            or type(int_s) != int
+            or min_s > max_s
+        ):
+            raise ValueError("invalid values!")
 
         return min_s <= int_s <= max_s
     except (KeyError, TypeError, ValueError) as e:
